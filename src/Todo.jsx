@@ -19,9 +19,15 @@ export default function Todolist () {
        setTodos( todos.filter((task) => task != todo))
     }
 
-    let uppercaseOne = () => {
-        setTodos(todos.map((todo) => todo.toUpperCase()));
+    let uppercase = () => {
+        setTodos(todos.map((todos) => todos.toUpperCase()));
     }
+
+   let lowercase = () => {
+    setTodos(todos.map( (todo) => todo.toLowerCase()))
+   }
+
+   
 
     return (
         <div className='flex flex-col'>
@@ -37,7 +43,8 @@ export default function Todolist () {
                     todos.map( (todo) => (
                         <li key={todo} className=' text-[25px]'><span>{todo}</span>
                         <Button onClick={() => deleteTodo(todo)} style={{marginLeft: "15px", background: "black"}} variant="contained" >Delete Task</Button>
-                        <Button onClick={() => uppercaseOne(todo)} style={{marginLeft: "15px", background: "black"}} variant="contained" >UpperCase One</Button>
+                        <Button onClick={ uppercase} style={{marginLeft: "15px", background: "black"}} variant="contained" >UpperCase</Button>
+                        <Button onClick={ lowercase} style={{marginLeft: "15px", background: "black"}} variant="contained" >LowerCase</Button>
                         </li>
                     ))
                 }
