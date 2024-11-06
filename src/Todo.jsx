@@ -16,7 +16,11 @@ export default function Todolist () {
     }
     
     let deleteTodo = (todo) => {
-       setTodos( todos.filter((delTask) => delTask != todo))
+       setTodos( todos.filter((task) => task != todo))
+    }
+
+    let uppercaseOne = () => {
+        setTodos(todos.map((todo) => todo.toUpperCase()));
     }
 
     return (
@@ -33,6 +37,7 @@ export default function Todolist () {
                     todos.map( (todo) => (
                         <li key={todo} className=' text-[25px]'><span>{todo}</span>
                         <Button onClick={() => deleteTodo(todo)} style={{marginLeft: "15px", background: "black"}} variant="contained" >Delete Task</Button>
+                        <Button onClick={() => uppercaseOne(todo)} style={{marginLeft: "15px", background: "black"}} variant="contained" >UpperCase One</Button>
                         </li>
                     ))
                 }
