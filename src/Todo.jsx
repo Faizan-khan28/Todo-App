@@ -14,7 +14,10 @@ export default function Todolist () {
         setTodos([...todos, newTodo])
         setnewTodo("");
     }
-
+    
+    let deleteTodo = (todo) => {
+       setTodos( todos.filter((delTask) => delTask != todo))
+    }
 
     return (
         <div className='flex flex-col'>
@@ -28,7 +31,9 @@ export default function Todolist () {
              <ul className='mt-4'>
                 {
                     todos.map( (todo) => (
-                        <li key={todo} className=' text-[25px]'>{todo}</li>
+                        <li key={todo} className=' text-[25px]'><span>{todo}</span>
+                        <Button onClick={() => deleteTodo(todo)} style={{marginLeft: "15px", background: "black"}} variant="contained" >Delete Task</Button>
+                        </li>
                     ))
                 }
              </ul>
