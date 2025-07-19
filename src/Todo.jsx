@@ -4,7 +4,7 @@ export default function Todolist() {
   const [todo, setTodo] = useState([]);
   const [task, setTask] = useState("");
 
-  let handleChange = event => {
+  let handleChange = (event) => {
     setTask(event.target.value);
   };
 
