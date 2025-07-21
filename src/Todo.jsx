@@ -13,6 +13,12 @@ export default function Todolist() {
     setTask("");
   };
 
+  let deleteTodo = (index) => {
+    let filtertasks = todo.filter((task) => task == index)
+    setTodo(filtertasks);
+    console.log("task is deleted")
+  }
+
   return (
     <div>
       <h1 className="text-3xl text-center font-semibold">todo app</h1>
@@ -33,7 +39,10 @@ export default function Todolist() {
       </div>
       <ul className="text-center mt-3 font-medium text-xl">
         {todo.map((task, index) => (
-          <li key={index}>{task}</li>
+         <div key={index} className="flex justify-center gap-2">
+           <li>{task}</li>
+           <button onClick={()=> deleteTodo(index)} className="bg-red-400 py-1 px-3 text-[14px]">Delete task</button>
+         </div>
         ))}
       </ul>
     </div>
