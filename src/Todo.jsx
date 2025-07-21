@@ -8,15 +8,22 @@ export default function Todolist() {
     setTask(event.target.value);
   };
 
+  
+
   let addNewTodo = () => {
     setTodo([...todo, task]);
     setTask("");
-  };
+  }
 
-  let deleteTodo = (index) => {
+   let deleteTodo = (index) => {
     let filtertasks = todo.filter((task) => task == index)
     setTodo(filtertasks);
     console.log("task is deleted")
+  }
+
+   let deleteOneTodo = (task) => {
+    let filteronetasks = todo.filter((todo) => todo.task !=  task )
+     setTodo(filteronetasks);
   }
 
   return (
@@ -38,11 +45,12 @@ export default function Todolist() {
         </button>
       </div>
       <ul className="text-center mt-3 font-medium text-xl">
-        {todo.map((task, index) => (
-         <div key={index} className="flex justify-center gap-2">
-           <li>{task}</li>
-           <button onClick={()=> deleteTodo(index)} className="bg-red-400 py-1 px-3 text-[14px]">Delete task</button>
-         </div>
+        {todo.map((task , index) => (
+           <div key={index} id={task.id} className="flex justify-center gap-2">
+            <li>{task}</li>
+            <button onClick={()=> deleteTodo(index)} className="bg-red-400 mb-3 py-1 px-3 text-[14px]">Delete task</button>
+            <button onClick={()=> deleteOneTodo(task.task)} className="bg-blue-400 mb-3 py-1 px-3 text-[14px]">Delete one</button>
+           </div>
         ))}
       </ul>
     </div>
