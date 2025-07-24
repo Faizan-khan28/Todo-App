@@ -1,29 +1,32 @@
 import { useState } from "react";
 
 export default function Todolist() {
-  const [todo, setTodo] = useState([]);
   const [task, setTask] = useState("");
+  const [todos, setTodos] = useState([]);
 
   let handleChange = (event) => {
     setTask(event.target.value);
   };
 
-  
 
   let addNewTodo = () => {
-    setTodo([...todo, task]);
+    if(task === "") return;
+    let newTodo = {
+      id: Date.now(),
+      text: task,
+    }
+    setTodos([...todos, newTodo]);
+     console.log(todos)
     setTask("");
   }
 
+
    let deleteTodo = (index) => {
-    let filtertasks = todo.filter((task) => task == index)
-    setTodo(filtertasks);
-    console.log("task is deleted")
+    setTodos(todos.filter((todo) => todo !== index));
   }
 
-   let deleteOneTodo = (task) => {
-    let filteronetasks = todo.filter((todo) => todo.task !=  task )
-     setTodo(filteronetasks);
+   let deleteOneTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !==  id ));
   }
 
   return (
@@ -45,14 +48,14 @@ export default function Todolist() {
         </button>
       </div>
       <ul className="text-center mt-3 font-medium text-xl">
-        {todo.map((task , index) => (
-           <div key={index} id={task.id} className="flex justify-center gap-2">
-            <li>{task}</li>
+        {todos.map((todo , index) => (
+           <div key={todo.id} className="flex justify-center gap-2">
+            <li>{todo.text}</li>
             <button onClick={()=> deleteTodo(index)} className="bg-red-400 mb-3 py-1 px-3 text-[14px]">Delete task</button>
-            <button onClick={()=> deleteOneTodo(task.task)} className="bg-blue-400 mb-3 py-1 px-3 text-[14px]">Delete one</button>
+            <button onClick={()=> deleteOneTodo(todo.id)} className="bg-blue-400 mb-3 py-1 px-3 text-[14px]">Delete one</button>
            </div>
         ))}
       </ul>
-    </div>
+    </div> 
   );
 }
